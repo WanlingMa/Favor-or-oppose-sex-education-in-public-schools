@@ -21,6 +21,8 @@ bibliography: references.bib
 library(tidyverse)
 library(palmerpenguins)
 library(foreign)
+library(ggplot2)
+library(dplyr)
 ```
 
 ```{r}
@@ -69,9 +71,11 @@ data <- GSS_ascii
 
 # Introduction
 
-In this paper, we conduct an exploration of public opinions on sexual education in public schools within the United States by leveraging the dataset from the General Social Survey (GSS). This paper reveals patterns influenced by political affiliations, educational backgrounds, and age demographics. Our analysis demonstrates a robust support for sexual education across the board, yet with significant variations: Democrats and those with higher education levels exhibit stronger favorability towards sexual education, compared to their Republican counterparts and individuals with lower educational attainments. Additionally, a generational divide is evident, with younger respondents showing a more pronounced support for sexual education, suggesting shifting societal norms and the influence of contemporary values on educational preferences.
+In this paper, we conduct an exploration of public opinions on sexual education in public schools within the United States by leveraging the dataset from the General Social Survey [@gss]. This paper reveals patterns influenced by political affiliations, educational backgrounds, and age demographics. Our analysis demonstrates a robust support for sexual education across the board, yet with significant variations: Democrats and those with higher education levels exhibit stronger favorability towards sexual education, compared to their Republican counterparts and individuals with lower educational attainments. Additionally, a generational divide is evident, with younger respondents showing a more pronounced support for sexual education, suggesting shifting societal norms and the influence of contemporary values on educational preferences.
 
 This study's findings are pivotal, underscoring the complex interplay between individual characteristics and opinions on sexual education. Political ideology emerges as a critical factor, with a notable divide between different party affiliations, reflecting broader national debates on the role of sexual education in public schools. Educational attainment further compounds these differences, highlighting the impact of education not just as a demographic variable, but as a lens through which societal issues are interpreted and understood. Age, as a proxy for generational perspective, offers insights into evolving attitudes towards sexual education, pointing towards a future where such programs might be more widely accepted.
+
+The estimand is defined as the influence of political affiliation, educational attainment, and age on public opinions towards sexual education in public schools. By isolating these key variables, our analysis seeks to quantify how deeply and in what directions these demographic factors steer individual support or opposition to sexual education programs. This estimand serves as the backbone of our study, guiding the investigation to uncover the underlying patterns that characterize public sentiment on this contentious educational topic.
 
 The structure of the paper is designed to facilitate a comprehensive understanding of the research process and findings. The Data section (@sec-data) delves into the GSS dataset, detailing the selection criteria, cleaning processes, and the challenges encountered, such as missing data and the shift to online survey methodologies. The Results section (@sec-results) presents the core of our analysis, visualizing the relationship between opinions on sexual education and variables like political affiliation, education level, and age, supported by statistical evidence. Finally, the Discussion (@sec-discussion) section synthesizes these findings within the broader context of existing literature, offering interpretations of the observed trends and suggesting avenues for future research to build upon the complex dynamics uncovered in this study.
 
@@ -102,13 +106,21 @@ The core dataset of our study, outlined in @tbl-targetVar, captures respondents'
 
 : Opinions about Sexual Education in public school {#tbl-targetVar}
 
-TODO: Add graphs to show the dataset. Or consider add into Results section
+## Measurement
+
+The General Social Survey (GSS) employs a methodology for capturing data on public opinions towards sexual education, alongside demographic variables such as political affiliation, educational attainment, and age. Each variable is quantified to accurately reflect respondents' perspectives and backgrounds. For instance, opinions on sexual education are gathered through direct questioning, such as, "Would you be for or against sex education in the public schools?", with responses coded into predefined categories for detailed analysis [@gssCodebook]. Educational attainment is measured by the highest level of education respondents have completed, categorized from 'Less than high school' to 'Graduate degree'. Age is recorded as a continuous variable, offering insights into generational differences in attitudes towards sexual education. This systematic approach ensures that the dataset reliably mirrors the nuanced viewpoints and demographic characteristics of the American populace, providing a solid base for exploring the dynamics influencing public opinions on sexual education.
+
+## Ethics and Bias
+
+The GSS upholds ethical standards by ensuring the anonymity and confidentiality of respondents, essential for eliciting honest and candid responses. Participants are informed about their rights as respondents, and are assured that their participation is voluntary, with the option to withdraw at any time. These measures adhere to the ethical principles of respect for persons, beneficence, and justice, safeguarding the dignity and privacy of individuals while collecting data that could inform policy and educational content.
+
+Despite these precautions, potential biases such as response bias may still influence the data. Respondents might alter their answers based on perceived social desirability or due to discomfort with discussing sexual education openly, leading to underreporting or overreporting of certain views. Acknowledging and addressing these biases is crucial for the integrity of the research process. Efforts to mitigate such biases include the careful design of survey questions, the use of neutral language, and the provision of a secure and respectful environment for data collection. Through vigilant attention to ethics and bias, the research strives to produce findings that are not only insightful but also respectful and representative of the population's diverse opinions on sexual education.
 
 ## Data Limitation
 
 ### Changes in Survey Methodology
 
-The 2022 General Social Survey (GSS) undertook a notable methodological transition to a multimode survey design, incorporating face-to-face, web, and telephone interviews, a shift primarily informed by the challenges presented by the COVID-19 pandemic. This adaptation introduced an experimental design where sampled cases were randomly assigned to either start with face-to-face interviews followed by a web survey for non-respondents, or begin with a web survey and then offer face-to-face interviews for non-respondents. This experiment aimed to explore the impacts of survey mode on response patterns and data quality, with 94.2% of respondents completing the survey in a single mode and 5.8% in multiple modes. Notably, the survey achieved a 50.5% response rate, a significant increase from the 17% response rate of the primarily web-based 2021 GSS, underscoring the potential of multimode approaches to enhance participation.
+The 2022 General Social Survey (GSS) undertook a notable methodological transition to a multimode survey design, incorporating face-to-face, web, and telephone interviews, a shift primarily informed by the challenges presented by the COVID-19 pandemic [@gssCodebook]. This adaptation introduced an experimental design where sampled cases were randomly assigned to either start with face-to-face interviews followed by a web survey for non-respondents, or begin with a web survey and then offer face-to-face interviews for non-respondents. This experiment aimed to explore the impacts of survey mode on response patterns and data quality, with 94.2% of respondents completing the survey in a single mode and 5.8% in multiple modes. Notably, the survey achieved a 50.5% response rate, a significant increase from the 17% response rate of the primarily web-based 2021 GSS, underscoring the potential of multimode approaches to enhance participation [@gssCodebook].
 
 The implications of this methodological shift for research, particularly studies like ours on public opinions regarding sexual education in public schools, are multifaceted. The introduction of different modes may introduce mode effects, where the method of data collection influences how participants respond to questions, especially on sensitive topics. This variability could lead to differences in response rates, the completeness of data, and possibly the willingness of respondents to discuss controversial issues like sexual education. For our survey, this methodological evolution represents a data limitation in that comparisons across years or interpretations of trends in public opinion must be approached with caution. Understanding that responses from 2022 might be influenced by the mode of data collection is crucial for accurately analyzing shifts in public opinion on sexual education, requiring sophisticated statistical techniques to disentangle genuine changes in attitudes from methodological artifacts.
 
@@ -128,10 +140,9 @@ The dataset's significant proportion of missing cases, with 31,615 cases not pro
 
 ## Data Processing
 
-To process and analyze the General Social Survey (GSS) data relevant to our study on sexual education, I began by selecting interested data entries through the GSS website, leveraging the GSS Data Explorer for this purpose. This tool facilitated the creation of a data extraction package, which included a .dat file (containing the raw survey data), a .dct file (defining the data format), and a R script. This R script uses the .dat and .dct files to automatically generate a dataframe in R, streamlining the initial data handling process. Subsequently, I addressed the challenge of the dataset's encoded responses—where opinions, votes, and other responses are represented numerically—by translating all codes based on the comprehensive codebook available on the GSS homepage. This translation process ensured that the dataset was interpreted and ready for in-depth analysis.
+Data was collected, processed, and analyzed using the statistical programming software R [@citeR], using functions from `tidyverse` [@citeTidyverse], `ggplot2` [@citeGgplot2], `dplyr` [@citeDplyr], `palmerpenguins` [@citePalmerpenguins], `foreign` [@citeForeign]. 
 
-TODO: Add the following:
-1. Clear N/A value ( < 0 encoded)
+To process and analyze the General Social Survey (GSS) data relevant to our study on sexual education, I began by selecting interested data entries through the GSS website, leveraging the GSS Data Explorer for this purpose. This tool facilitated the creation of a data extraction package, which included a .dat file (containing the raw survey data), a .dct file (defining the data format), and an R script. This R script uses the .dat and .dct files to automatically generate a dataframe in R, streamlining the initial data handling process. Subsequently, I addressed the challenge of the dataset's encoded responses—where opinions, votes, and other responses are represented numerically—by translating all codes based on the comprehensive codebook available on the GSS homepage. This translation process ensured that the dataset was interpreted and ready for in-depth analysis. Additionally, I cleaned the data by removing entries with values less than 0, as these are considered missing or inappropriate data, further refining the dataset for accurate analysis.
 
 # Results {#sec-results}
 
@@ -473,7 +484,9 @@ In the end, our findings reflect not just the collective pulse on sexual educati
 
 This supplementary survey aims to gather nuanced opinions on sexual education in public schools, extending insights gained from the General Social Survey (GSS). Your participation is voluntary, and all responses are anonymous. This survey will be distributed in the same manner as the GSS but is designed to stand independently to gain additional information on the topic.
 
-**Survey Link:** `https://forms.gle/VKxW3meiEG3k25R58`
+Thank you for taking the time to complete this survey. Please contact Wanling Ma via wanling.ma\@mail.utoronto.ca if you have questions or require any further information.
+
+**Survey Link:** `https://forms.gle/bLzNKqahjMHwtLf46`
 
 ## Survey Questions
 
