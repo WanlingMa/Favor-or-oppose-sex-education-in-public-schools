@@ -1,26 +1,16 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from GSS
+# Author: Wanling Ma
+# Date: 12 March 2024
+# Contact: wanling.ma@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
-
-
-#### Workspace setup ####
-library(opendatatoronto)
-library(tidyverse)
-# [...UPDATE THIS...]
 
 #### Download data ####
-# [...ADD CODE HERE TO DOWNLOAD...]
 
-
-
-#### Save data ####
-# [...UPDATE THIS...]
-# change the_raw_data to whatever name you assigned when you downloaded it.
-write_csv(the_raw_data, "inputs/data/raw_data.csv") 
+# 1. Login to the GSSDataExplorer (https://gssdataexplorer.norc.org/MyGSS)
+# 2. In "Search GSS Variable", choose all the variables and "Add to MyGSS"
+# 3. Go back to MyGSS
+# 4. Add all variables to Extract
+# 5. Create an Extract and use R script as output format
 
          
