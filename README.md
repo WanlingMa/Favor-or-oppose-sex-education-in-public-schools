@@ -18,4 +18,4 @@ The repo is structured as:
 
 # Statement on LLM usage
 
-We use ChatGPT for brainstorming ideas, proofreading, and writing certain parts of the paper. The entire chat history is available in inputs/llms/usage.txt.
+We use ChatGPT for brainstorming ideas, generating R code, and writing certain parts of the paper. The entire chat history is available in other/llms/usage.txt.
