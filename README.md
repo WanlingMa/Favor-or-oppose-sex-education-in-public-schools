@@ -1,4 +1,4 @@
-# Public Opinions on Sexual Education in PublicSchools
+# Public Opinions on Sexual Education in Public Schools
 
 ## Overview
 
