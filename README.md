@@ -6,7 +6,7 @@ This repo provides all scripts, sources, and codes to reproduce the paper **Publ
 
 ## Paper Abstract
 
-This paper analyzes public opinions on sexual education in public schools across the United States, utilizing data from the General Social Survey (GSS) to explore how political affiliations, educational backgrounds, and age demographics shape these views. We discovered that support for sexual education is broadly strong but varies significantly with political ideology, education level, and generational differences, with Democrats, higher-educated individuals, and younger respondents showing the most support. These findings highlight the deep interconnection between personal characteristics and attitudes towards sexual education, reflecting wider societal and cultural debates on the topic. Ultimately, our study underscores the importance of considering diverse perspectives in the formulation and implementation of sexual education policies, revealing the potential for education as a unifying force in addressing public health and societal well-being.
+This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis reveals widespread support for sexual education, though support varies significantly by political ideology, education level, and age, with Democrats, the highly educated, and younger people being the most supportive. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. Ultimately, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare.
 
 ## File Structure
 
@@ -20,7 +20,7 @@ The repo is structured as:
 
 ## Statement on LLM usage
 
-We use ChatGPT-4 for brainstorming ideas, generating R code, and writing certain parts of the paper. The entire chat history is available in other/llms/usage.txt.
+I use ChatGPT-4 for brainstorming ideas, generating R code, and writing certain parts of the paper. The entire chat history is available in other/llms/usage.txt.
 
 ## Instructions on downloading the dataset used in this package
 

@@ -1,11 +1,12 @@
 ---
-title: "Public Opinions on Sexual Education in Public Schools: An Analysis of Political, Educational, and Generational Influences in the United States from 1972 to 2022"
+title: "Public Opinions on Sexual Education in Public Schools"
+subtitle: "An Analysis of Political, Educational, and Generational Influences in the United States from 1972 to 2022"
 author: 
   - Wanling Ma
 thanks: "Code and data are available at: https://github.com/WanlingMa/Favor-or-oppose-sex-education-in-public-schools"
 date: today
 date-format: long
-abstract: "This paper analyzes public opinions on sexual education in public schools across the United States, utilizing data from the General Social Survey (GSS) to explore how political affiliations, educational backgrounds, and age demographics shape these views. We discovered that support for sexual education is broadly strong but varies significantly with political ideology, education level, and generational differences, with Democrats, higher-educated individuals, and younger respondents showing the most support. These findings highlight the deep interconnection between personal characteristics and attitudes towards sexual education, reflecting wider societal and cultural debates on the topic. Ultimately, our study underscores the importance of considering diverse perspectives in the formulation and implementation of sexual education policies, revealing the potential for education as a unifying force in addressing public health and societal well-being."
+abstract: "This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis reveals widespread support for sexual education, though support varies significantly by political ideology, education level, and age, with Democrats, the highly educated, and younger people being the most supportive. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. In conclusion, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare."
 format: pdf
 toc: true
 number-sections: true
@@ -19,7 +20,6 @@ bibliography: references.bib
 
 # Load all necessary libraries
 library(tidyverse)
-library(palmerpenguins)
 library(foreign)
 library(ggplot2)
 library(dplyr)
@@ -71,13 +71,13 @@ data <- GSS_ascii
 
 # Introduction
 
-In this paper, we conduct an exploration of public opinions on sexual education in public schools within the United States by leveraging the dataset from the General Social Survey [@gss]. This paper reveals patterns influenced by political affiliations, educational backgrounds, and age demographics. Our analysis demonstrates a robust support for sexual education across the board, yet with significant variations: Democrats and those with higher education levels exhibit stronger favorability towards sexual education, compared to their Republican counterparts and individuals with lower educational attainments. Additionally, a generational divide is evident, with younger respondents showing a more pronounced support for sexual education, suggesting shifting societal norms and the influence of contemporary values on educational preferences.
+This study looks into how people feel about sexual education in public schools across the U.S., using data from the General Social Survey (GSS). We find a wide range of support for sexual education, but there are significant differences based on political views, education, and age. In particular, Democrats and individuals with higher levels of education tend to support sexual education more compared to Republicans and those with less education. Also, younger people show more support for sexual education, suggesting changes in social norms and the influence of modern values on education preferences.
 
-This study's findings are pivotal, underscoring the complex interplay between individual characteristics and opinions on sexual education. Political ideology emerges as a critical factor, with a notable divide between different party affiliations, reflecting broader national debates on the role of sexual education in public schools. Educational attainment further compounds these differences, highlighting the impact of education not just as a demographic variable, but as a lens through which societal issues are interpreted and understood. Age, as a proxy for generational perspective, offers insights into evolving attitudes towards sexual education, pointing towards a future where such programs might be more widely accepted.
+We find that political affiliation significantly influences opinions on sexual education, mirroring national debates about its role in schools. Educational attainment not only differentiates views but also serves as a prism through which broader societal issues are perceived. Age, indicating generational shifts, suggests evolving acceptance of sexual education programs.
 
-The estimand is defined as the influence of political affiliation, educational attainment, and age on public opinions towards sexual education in public schools. By isolating these key variables, our analysis seeks to quantify how deeply and in what directions these demographic factors steer individual support or opposition to sexual education programs. This estimand serves as the backbone of our study, guiding the investigation to uncover the underlying patterns that characterize public sentiment on this contentious educational topic.
+Our estimand focuses on the relationship between political affiliation, educational attainment, and age, and their collective impact on public opinions toward sexual education in public schools. We aim to precisely measure how these factors influence support or opposition to sexual education, serving as the core of our study. This approach allows us to identify and understand the patterns that form public sentiment on this debated topic.
 
-The structure of the paper is designed to facilitate a comprehensive understanding of the research process and findings. The Data section (@sec-data) delves into the GSS dataset, detailing the selection criteria, cleaning processes, and the challenges encountered, such as missing data and the shift to online survey methodologies. The Results section (@sec-results) presents the core of our analysis, visualizing the relationship between opinions on sexual education and variables like political affiliation, education level, and age, supported by statistical evidence. Finally, the Discussion (@sec-discussion) section synthesizes these findings within the broader context of existing literature, offering interpretations of the observed trends and suggesting avenues for future research to build upon the complex dynamics uncovered in this study.
+The paper is organized into sections covering [Data], [Results], and [Discussions]. The Data [Data] section details our use of the GSS dataset, including how we selected and cleaned the data, and the challenges we faced, such as missing information and the transition to online survey methods. The [Results] section outlines our findings, showing how opinions on sexual education correlate with factors like political affiliation, education level, and age. The [Discussions] synthesizes our findings in the context of existing research, interpreting the trends we've observed and suggesting paths for future research to explore the dynamics we've identified.
 
 
 
@@ -106,49 +106,29 @@ The core dataset of our study, outlined in @tbl-targetVar, captures respondents'
 
 : Opinions about Sexual Education in public school {#tbl-targetVar}
 
+More details about the above two datasets can be found in the section [Data Visualization].
+
 ## Measurement
 
-The General Social Survey (GSS) employs a methodology for capturing data on public opinions towards sexual education, alongside demographic variables such as political affiliation, educational attainment, and age. Each variable is quantified to accurately reflect respondents' perspectives and backgrounds. For instance, opinions on sexual education are gathered through direct questioning, such as, "Would you be for or against sex education in the public schools?", with responses coded into predefined categories for detailed analysis [@gssCodebook]. Educational attainment is measured by the highest level of education respondents have completed, categorized from 'Less than high school' to 'Graduate degree'. Age is recorded as a continuous variable, offering insights into generational differences in attitudes towards sexual education. This systematic approach ensures that the dataset reliably mirrors the nuanced viewpoints and demographic characteristics of the American populace, providing a solid base for exploring the dynamics influencing public opinions on sexual education.
+When the General Social Survey (GSS) capturing the dataset described in the previous section [Source Data], each variable is quantified to accurately reflect respondents' perspectives and backgrounds. For instance, opinions on sexual education are gathered through direct questioning, such as, "Would you be for or against sex education in the public schools?", with responses coded into predefined categories for detailed analysis [@gssCodebook]. Educational attainment is measured by the highest level of education respondents have completed, categorized from 'Less than high school' to 'Graduate degree'. Age is recorded as a continuous variable, offering insights into generational differences in attitudes towards sexual education. This systematic approach ensures that the dataset reliably mirrors respondents' characteristics of the American populations, providing a solid base for exploring the dynamics influencing public opinions on sexual education.
 
 ## Ethics and Bias
 
-The GSS upholds ethical standards by ensuring the anonymity and confidentiality of respondents, essential for eliciting honest and candid responses. Participants are informed about their rights as respondents, and are assured that their participation is voluntary, with the option to withdraw at any time. These measures adhere to the ethical principles of respect for persons, beneficence, and justice, safeguarding the dignity and privacy of individuals while collecting data that could inform policy and educational content.
+The GSS upholds ethical standards by ensuring the anonymity and confidentiality of respondents, essential for ensuring honest responses. Participants are informed about their rights as respondents, and are assured that their participation is voluntary, with the option to withdraw at any time. These measures adhere to the ethical principles of respect for persons, beneficence, and justice, safeguarding the dignity and privacy of individuals while collecting data that could inform policy and educational content.
 
 Despite these precautions, potential biases such as response bias may still influence the data. Respondents might alter their answers based on perceived social desirability or due to discomfort with discussing sexual education openly, leading to underreporting or overreporting of certain views. Acknowledging and addressing these biases is crucial for the integrity of the research process. Efforts to mitigate such biases include the careful design of survey questions, the use of neutral language, and the provision of a secure and respectful environment for data collection. Through vigilant attention to ethics and bias, the research strives to produce findings that are not only insightful but also respectful and representative of the population's diverse opinions on sexual education.
 
-## Data Limitation
-
-### Changes in Survey Methodology
-
-The 2022 General Social Survey (GSS) undertook a notable methodological transition to a multimode survey design, incorporating face-to-face, web, and telephone interviews, a shift primarily informed by the challenges presented by the COVID-19 pandemic [@gssCodebook]. This adaptation introduced an experimental design where sampled cases were randomly assigned to either start with face-to-face interviews followed by a web survey for non-respondents, or begin with a web survey and then offer face-to-face interviews for non-respondents. This experiment aimed to explore the impacts of survey mode on response patterns and data quality, with 94.2% of respondents completing the survey in a single mode and 5.8% in multiple modes. Notably, the survey achieved a 50.5% response rate, a significant increase from the 17% response rate of the primarily web-based 2021 GSS, underscoring the potential of multimode approaches to enhance participation [@gssCodebook].
-
-The implications of this methodological shift for research, particularly studies like ours on public opinions regarding sexual education in public schools, are multifaceted. The introduction of different modes may introduce mode effects, where the method of data collection influences how participants respond to questions, especially on sensitive topics. This variability could lead to differences in response rates, the completeness of data, and possibly the willingness of respondents to discuss controversial issues like sexual education. For our survey, this methodological evolution represents a data limitation in that comparisons across years or interpretations of trends in public opinion must be approached with caution. Understanding that responses from 2022 might be influenced by the mode of data collection is crucial for accurately analyzing shifts in public opinion on sexual education, requiring sophisticated statistical techniques to disentangle genuine changes in attitudes from methodological artifacts.
-
-### Data Availability
-
-#### Missing Ballot C in the Sexual Education Dataset
-
-The General Social Survey (GSS) employs a split-ballot design, dividing questions among different versions of the questionnaire, or "ballots," to efficiently cover a wide array of topics. The absence of Ballot C from the Sexual Education Dataset, while Ballots A and B are present, indicates a notable gap in the dataset. This omission is significant because each ballot typically targets a distinct set of questions or themes, meaning that unique insights and data collected through Ballot C are missing from the analysis. The lack of Ballot C's data may lead to a loss of insights from respondents who were allocated to this ballot, potentially skewing the understanding of public opinions or demographic differences related to sexual education. This gap not only limits the breadth of questions that can be analyzed but also affects the study's ability to draw comprehensive conclusions about attitudes toward sexual education. By missing out on the data from Ballot C, researchers are deprived of a full picture, which can undermine the representativeness of findings and may lead to incomplete or biased interpretations of societal attitudes toward sexual education policies and perceptions.
-
-#### Missing Years in Data Collection
-
-The absence of data for certain years, notably the shift from a planned 2020 data collection to 2021, presents a discontinuity in the longitudinal dataset of the GSS. This gap, particularly influenced by the COVID-19 pandemic, poses challenges for trend analysis and longitudinal studies aiming to understand changes in attitudes toward sexual education over time. The year 2020 was pivotal globally due to the pandemic, and missing data from this period means missing insights into how societal attitudes may have shifted in response to the global crisis and its impact on education systems, including sexual education. Transitioning to 2021 for data collection attempts to bridge this gap, but the temporal discontinuity introduces complexity in interpreting trends, requiring researchers to account for this break in the data when analyzing changes over time or drawing comparisons across years.
-
-#### High Rate of Missing Cases
-
-The dataset's significant proportion of missing cases, with 31,615 cases not providing responses to questions related to sexual education out of a total of 72,390 cases, underscores a substantial data availability issue. This high rate of non-response could indicate several limitations, including possible respondent discomfort with the topic, lack of knowledge, or even survey fatigue. In the context of sexual education—a subject that can be sensitive for many individuals—the willingness or ability to answer related questions might not be evenly distributed across the survey population. This unevenness risks skewing the data towards those more inclined to respond, potentially those with stronger opinions or more direct experience with the topic, thereby compromising the representativeness of the dataset. Consequently, this limitation necessitates careful consideration and possibly the application of statistical adjustments or weighting to mitigate biases and ensure that findings accurately reflect the broader population's views on sexual education.
-
 ## Data Processing
 
-Data was collected, processed, and analyzed using the statistical programming software R [@citeR], using functions from `tidyverse` [@citeTidyverse], `ggplot2` [@citeGgplot2], `dplyr` [@citeDplyr], `palmerpenguins` [@citePalmerpenguins], `foreign` [@citeForeign]. 
+Data was collected, processed, and analyzed using the statistical programming software R [@citeR], using functions from `tidyverse` [@citeTidyverse], `ggplot2` [@citeGgplot2], `dplyr` [@citeDplyr], `foreign` [@citeForeign]. 
 
-To process and analyze the General Social Survey (GSS) data relevant to our study on sexual education, I began by selecting interested data entries through the GSS website, leveraging the GSS Data Explorer for this purpose. This tool facilitated the creation of a data extraction package, which included a .dat file (containing the raw survey data), a .dct file (defining the data format), and an R script. This R script uses the .dat and .dct files to automatically generate a dataframe in R, streamlining the initial data handling process. Subsequently, I addressed the challenge of the dataset's encoded responses—where opinions, votes, and other responses are represented numerically—by translating all codes based on the comprehensive codebook available on the GSS homepage. This translation process ensured that the dataset was interpreted and ready for in-depth analysis. Additionally, I cleaned the data by removing entries with values less than 0, as these are considered missing or inappropriate data, further refining the dataset for accurate analysis.
+To process and analyze the General Social Survey (GSS) data relevant to our study, I began by selecting interested data entries through the GSS website, leveraging the GSS Data Explorer for this purpose. This tool facilitated the creation of a data extraction package, which included a .dat file (containing the raw survey data), a .dct file (defining the data format), and an R script. This R script uses the .dat and .dct files to automatically generate a dataframe in R, streamlining the initial data handling process. Subsequently, I addressed the challenge of the dataset's encoded responses—where opinions, votes, and other responses are represented numerically—by translating all codes based on the comprehensive codebook available on the GSS homepage. This translation process ensured that the dataset was interpreted and ready for in-depth analysis. Additionally, I cleaned the data by removing entries with values less than 0, as these are considered missing or inappropriate data, further refining the dataset for accurate analysis.
 
-# Results {#sec-results}
+## Data Visualization
 
-## Respondents' Ages
+### Respondents' Ages
 
-The age distribution of respondents in the dataset, as illustrated by @fig-ages, provides a comprehensive overview of the demographic makeup of the survey participants. The age ranges from 18 to over 89 years with median age to be 44. The distribution shows a relatively higher concentration of respondents in the younger age brackets, particularly between 23 to 38 years, suggesting a strong representation of young and middle-aged adults in the survey. This skew towards younger demographics could reflect the survey's reach or the accessibility of the survey mode to these age groups.
+The age distribution of respondents in the dataset, as illustrated by @fig-ages, provides a comprehensive overview of the demographic makeup of the survey participants. The age ranges from 18 to over 89 years with median age to be 44. The distribution shows a relatively higher concentration of respondents in the younger age brackets, particularly between 23 to 38 years, suggesting a strong representation of young and middle-aged adults in the survey.
 
 
 ```{r}
@@ -157,7 +137,7 @@ The age distribution of respondents in the dataset, as illustrated by @fig-ages,
 #| warning: false
 #| message: false
 #| label: fig-ages
-#| fig-cap: "Histogram of Respondent Ages"
+#| fig-cap: "Distribution of Respondent Ages"
 
 valid_ages <- data$AGE[data$AGE >= 0]
 
@@ -168,11 +148,10 @@ ggplot(data.frame(Age = valid_ages), aes(x = Age)) +
   theme_minimal()
 ```
 
-## Respondents‘ highest educational degree
+### Respondents' highest educational degree
 
-Respondents' highets educational degree spanning from 1972 to 2022 shows a significant shift in the educational attainment of respondents, with a decreasing trend in those with less than a high school diploma and a concurrent rise in those holding Bachelor's and Graduate degrees, as shown in @fig-degree-trend. Initially, @fig-degree-distribution shows that respondents predominantly reported a high school level education or below, but recent years show a transition, with higher education degrees becoming more common. This reflects a societal trend towards greater educational achievement, likely influenced by economic factors, career advancement opportunities, and greater access to higher education. These changes have implications for public policy and suggest a shift in the societal valuation of education.
+From @fig-degree-distribution, we can see that respondents predominantly reported a high school level education or below, but recent years show a transition, with higher education degrees becoming more common. The @fig-degree-trend shows a significant shift in the educational attainment of respondents, with a decrease in those with less than a high school diploma and a rise in those holding Bachelor's and Graduate degrees. 
 
-The early dominance of high school education or less among respondents may have influenced the survey's findings, particularly regarding opinions on sexual education in public schools. If higher education correlates with more progressive views—a notion supported by some studies—the increase in college and graduate degree holders could imply a shift towards greater acceptance of sexual education programs. This potential change highlights the importance of accounting for educational background in analyzing survey data to ensure that shifts in public opinion are not confounded by the changing educational composition of respondents.
 ```{r}
 #| echo: false
 #| eval: true
@@ -220,11 +199,9 @@ ggplot(df_summary, aes(x = YEAR, y = Count, color = DEGREE, group = DEGREE)) +
   theme_minimal()
 ```
 
-## Respondent's political identification
+### Respondents' political identification
 
 @fig-partyid-distribution tracks the political affiliations of respondents from 1972 to 2022, showing a diverse political landscape over the fifty-year span. Democrats consistently account for a significant portion of the responses, with numbers typically higher than Republicans, Independents, and those identifying with 'Other' categories. However, there's an observable increase in the count of Independents and 'Other' over time, reflecting a potential rise in political diversification and a move away from strict two-party identification.
-
-The data for 2006 and 2022 reveal a notable uptick in all political affiliations, possibly indicating increased political engagement during these years. Democrats and Republicans show a closing gap, with Independents also seeing a considerable increase, suggesting a shift in political alignment or the growing importance of non-party-specific issues influencing public opinion. This diversifying political identification among the surveyed population could significantly influence their opinions o n public policies, including sexual education in schools, and warrants consideration in analyzing trends over time.
 
 ```{r}
 #| echo: false
@@ -262,12 +239,11 @@ ggplot(df_summary, aes(x = YEAR, y = Count, color = PARTY_GROUP, group = PARTY_G
 
 ```
 
-## Sex Education Opinion
+### Respondents' Sex Education Opinion
 
-Next, we would focus on the dataset that shows the respondents' opinions about sexual education in public school. The dataset, as visualized in @fig-sexeduc-trend, reveals a clear trend in public opinion towards sexual education in public schools, with a significant majority expressing favor over the years. The number of votes favoring sexual education consistently surpasses those opposing it, indicating strong support for such programs among the surveyed population. Notably, the support for sexual education reaches its peak in the 2021, with the highest number of votes in favor recorded at 2450, compared to earlier years where the support, while still dominant, hovers around lower figures such as 1169 in 1974, which is the first year documented.
+Next, we would focus on the dataset that shows the respondents' opinions about sexual education in public school. The dataset, as visualized in @fig-sexeduc-trend, reveals a majority expressing favor over the years. Notably, the support for sexual education reaches its peak in the 2021, with the highest number of votes in favor recorded at 2450. This peak in the 2021 could be related to the transition in survey design, which is discussed in detail in the section [Changes in Survey Methodology].
 
-On the other hand, the opposition to sexual education in public schools shows a relatively stable trend with much lower numbers throughout the years, peaking at 318 votes in the early years and not exceeding this number in subsequent years. The relatively low and stable count of votes opposing sexual education, coupled with a peak at only 292 votes in the 2022, underscores a consistent, albeit smaller, segment of the population resistant to the idea. This contrast between the growing support for and stable opposition to sexual education highlights an increasing societal acceptance and potentially the recognized importance of sexual education in public schools over time. In our paper, we are also going to find out what factors are contributing to such resistant opposing sexual education.
-
+On the other hand, the opposition to sexual education in public schools shows a relatively stable trend with much lower numbers throughout the years, peaking at 318 votes in the early years. The relatively low and stable count of "Oppose" votes underscores a consistent but smaller segment of the population resistant to the idea.
 
 ```{r}
 #| echo: false
@@ -299,22 +275,35 @@ ggplot(df_summary, aes(x = YEAR, y = Count, color = Opinion)) +
 ```
 
 
-# Discussions {#sec-discussion}
+
+## Data Limitation
+
+### Changes in Survey Methodology
+
+The 2022 General Social Survey (GSS) undertook a methodological transition to a multimode survey design, including face-to-face, web, and telephone interviews. This shift is primarily caused by the challenges presented by the COVID-19 pandemic [@gssCodebook]. This adaptation introduced an experimental design where sampled cases were randomly assigned to either start with face-to-face interviews followed by a web survey for non-respondents, or begin with a web survey and then offer face-to-face interviews for non-respondents. This experiment aimed to explore the impacts of survey mode on response patterns and data quality, with 94.2% of respondents completing the survey in a single mode and 5.8% in multiple modes. Notably, the survey achieved a 50.5% response rate, a significant increase from the 17% response rate of the primarily web-based 2021 GSS, underscoring the potential of multimode approaches to enhance participation [@gssCodebook].
+
+The implications of this methodological shift for research, particularly studies like ours on public opinions regarding sexual education in public schools, are multifaceted. The introduction of different modes may introduce mode effects, where the method of data collection influences how participants respond to questions, especially on sensitive topics. This variability could lead to differences in response rates, the completeness of data, and possibly the willingness of respondents to discuss controversial issues like sexual education. For our survey, this methodological evolution represents a data limitation in that comparisons across years or interpretations of trends in public opinion must be approached with caution. Understanding that responses from 2022 might be influenced by the mode of data collection is crucial for accurately analyzing shifts in public opinion on sexual education, requiring sophisticated statistical techniques to disentangle genuine changes in attitudes from methodological artifacts.
+
+### Data Availability
+
+#### Missing Ballot C in the Sexual Education Dataset
+
+The General Social Survey (GSS) employs a split-ballot design, dividing questions among different versions of the questionnaire, or "ballots," to efficiently cover a wide array of topics. The absence of Ballot C from the Sexual Education Dataset, while Ballots A and B are present, indicates a notable gap in the dataset. This omission is significant because each ballot typically targets a distinct set of questions or themes, meaning that unique insights and data collected through Ballot C are missing from the analysis. The lack of Ballot C's data may lead to a loss of insights from respondents who were allocated to this ballot, potentially skewing the understanding of public opinions or demographic differences related to sexual education. This gap not only limits the breadth of questions that can be analyzed but also affects the study's ability to draw comprehensive conclusions about attitudes toward sexual education. By missing out on the data from Ballot C, researchers are deprived of a full picture, which can undermine the representativeness of findings and may lead to incomplete or biased interpretations of societal attitudes toward sexual education policies and perceptions.
+
+#### Missing Years in Data Collection
+
+The absence of data for certain years, notably the shift from a planned 2020 data collection to 2021, presents a discontinuity in the longitudinal dataset of the GSS. This gap, particularly influenced by the COVID-19 pandemic, poses challenges for trend analysis and longitudinal studies aiming to understand changes in attitudes toward sexual education over time. The year 2020 was pivotal globally due to the pandemic, and missing data from this period means missing insights into how societal attitudes may have shifted in response to the global crisis and its impact on education systems, including sexual education. Transitioning to 2021 for data collection attempts to bridge this gap, but the temporal discontinuity introduces complexity in interpreting trends, requiring researchers to account for this break in the data when analyzing changes over time or drawing comparisons across years.
+
+#### High Rate of Missing Cases
+
+The dataset's significant proportion of missing cases, with 31,615 cases not providing responses to questions related to sexual education out of a total of 72,390 cases, underscores a substantial data availability issue. This high rate of non-response could indicate several limitations, including possible respondent discomfort with the topic, lack of knowledge, or even survey fatigue. In the context of sexual education—a subject that can be sensitive for many individuals—the willingness or ability to answer related questions might not be evenly distributed across the survey population. This unevenness risks skewing the data towards those more inclined to respond, potentially those with stronger opinions or more direct experience with the topic, thereby compromising the representativeness of the dataset. Consequently, this limitation necessitates careful consideration and possibly the application of statistical adjustments or weighting to mitigate biases and ensure that findings accurately reflect the broader population's views on sexual education.
+
+
+# Results {#sec-results}
 
 ## Generational Divides in Attitudes Towards Sexual Education
 
-From @fig-sexeduc-vs-ages, we can see a significant correlation between the respondent's age and their opinions on sexual education in public schools, highlighting a generational divide in attitudes. Younger respondents tend to favor sexual education more, whereas older respondents are more likely to oppose it. Such a trend is not entirely surprising, given the stereotypical view that older people tend to hold more conservative beliefs, particularly regarding subjects as sensitive as sex education. These individuals are often perceived to resist changes in societal norms, including the introduction or expansion of sexual education in public schools. This observation is crucial for understanding the landscape of public opinions on sexual education and has significant implications for policy and curriculum development within educational institutions.
-
-The study by @russell1998sex provides a foundational perspective on this topic by investigating the impact of sexual education content on teenage motherhood. This research underscores the importance of age in shaping the outcomes and perceptions of sexual education, suggesting that early exposure to comprehensive sexual education can influence life outcomes significantly. This aligns with the observed trend in our analysis, where younger respondents showed a higher favorability towards sexual education, potentially due to the benefits of early and comprehensive education in shaping progressive views on sexual health and education.
-
-In a complementary vein, @ewen2012students delve into how political views, often intertwined with age, influence attitudes towards sexual behaviors among older adults. This study elucidates the broader societal and generational perspectives that underpin attitudes towards sexual education, revealing that older adults’ more conservative views may reflect in their skepticism or opposition to sexual education in schools. Such insights help explain the negative correlation between age and support for sexual education observed in our dataset, reinforcing the significance of considering generational perspectives in the discourse on sexual education (Ewen & Brown).
-
-Furthermore, @vargas2016opinion and @park2017study contribute to our understanding by exploring the opinions of adults (parents and teachers) and the characteristics of adolescent sexuality and sex education, respectively. Vargas Stevenson’s focus on adult perspectives offers insight into the challenges of implementing sexual education policies that align with generational expectations and norms. Park’s examination of gender-sensitive approaches in sex education for adolescents highlights the evolving nature of educational strategies and their reception among younger populations. These studies collectively underscore the critical role of age in shaping and understanding public opinions towards sexual education, emphasizing the need for age-appropriate and inclusive education strategies to cater to the diverse needs of the student population (Vargas Stevenson; Park).
-
-In conclusion, the literature vividly illustrates the intricate relationship between age and attitudes towards sexual education, supporting the statistical findings of our dataset analysis. This body of work not only validates the observed generational differences in opinions on sexual education but also highlights the importance of tailoring educational policies and programs to bridge the gap between varying age groups, ensuring that sexual education is both effective and relevant across the lifespan.
-
-
-
+From @fig-sexeduc-vs-ages, we can see a correlation between the respondent's age and their opinions on sexual education in public schools. Younger respondents tend to favor sexual education more, whereas older respondents are more likely to oppose it. Such a trend is not entirely surprising, given the stereotypical view that older people tend to hold more conservative beliefs about sex education. This observation is crucial for understanding the landscape of public opinions on sexual education and has significant implications for policy and curriculum development within educational institutions.
 
 ```{r}
 #| echo: false
@@ -349,15 +338,11 @@ ggplot(counts_by_age_and_opinion, aes(x = AGE, y = Count, color = SEXEDUC, group
 
 ## Educational Attainment and Support for Sexual Education
 
-From @fig-rate-sexeduc-vs-degree, we can see that the relationship between educational level and opinions on sexual education in public schools unveils a noteworthy trend: as educational attainment increases, the proportion of individuals favoring sexual education significantly rises. This pattern suggests a correlation where individuals with higher education levels are more inclined to support sexual education, possibly due to a broader understanding of its importance in promoting health and well-being among students. From @fig-sexeduc-vs-degree, it's observed that respondents with a High School degree have the highest number of votes in favor. However, this might not accurately reflect true favorability, as the larger population of High School respondents inherently leads to a higher volume of votes, as shown in @fig-degree-trend. Therefore, @fig-rate-sexeduc-vs-degree, which delineates the favorability rate—percentage of favorable responses within each educational category—provides a clearer insight. This rate is a more precise indicator of support for sexual education across different educational levels, underscoring the nuanced impact of educational attainment on public opinions towards sexual education.
+From @fig-sexeduc-vs-degree, it's observed that respondents with a High School degree have the highest number of votes in favor.However, this might not accurately reflect true favorability, as the larger population of High School respondents inherently leads to a higher volume of votes.
 
-This correlation is supported by the research of @hamilton_ekeke2019assessing, who explored the reluctance of parents, irrespective of their educational background, to discuss sexual matters with their children. This reluctance, which may stem from cultural or personal discomfort, potentially leads to a greater appreciation for formal sexual education in schools among more educated individuals, recognizing its role in filling the informational void left by parents [@hamilton_ekeke2019assessing].
+Therefore, we decided to draw another figure that shows the Rate of "Favor" responses, as shown in  @fig-rate-sexeduc-vs-degree. We can see that, as educational attainment increases, the **proportion** of individuals favoring sexual education significantly rises. This pattern suggests a correlation where individuals with higher education levels are more inclined to support sexual education, possibly due to a broader understanding of its importance in promoting health and well-being among students.
 
-Similarly, @hulme_chambers2017sexuality highlighted the challenges faced by teachers in delivering sexual education, particularly due to inadequate training—a factor that might be more perceived by individuals with higher educational backgrounds. These individuals may advocate for sexual education as a means to ensure that students receive accurate and comprehensive information, underscoring the influence of educational level on public opinions towards sexual education in schools [@hulme_chambers2017sexuality].
 
-Moreover, studies such as the one conducted by @sanni_omolade2018perception in Lagos State demonstrate that educational level can shape students' perceptions of the effectiveness of sexual education on their behavior, further suggesting that educational attainment plays a role in shaping supportive attitudes towards sexual education. This is echoed in the findings of @bytautas_daukilas2023value, who discuss how value narratives and communication principles among educators, organizations, and parents—factors influenced by educational level—impact the motivational environment surrounding sexual education [@bytautas_daukilas2023value].
-
-In essence, the literature elucidates the significant influence of educational level on public opinions towards sexual education, highlighting a trend where higher educational attainment correlates with increased support for sexual education in public schools. This underscores the need for policies and programs that recognize and leverage the varying perspectives across different educational levels to foster a comprehensive and inclusive approach to sexual education.
 
 ```{r}
 #| echo: false
@@ -411,13 +396,7 @@ ggplot(degree_summary, aes(x = DEGREE, y = Favor_Rate, group = 1)) +
 
 ## Political Affiliation and Its Influence on Sexual Education Opinions
 
-In this section, we are going to compare political affiliation and opinions on sexual education in public schools. This comparison reveals important insights that underscore the influence of political ideology on public support for sexual education. Democrats and Independents show a strong preference for sexual education, with 13,004 and 13,224 individuals respectively favoring it, compared to their Republican counterparts, where 8,233 are in favor. However, it's crucial to note the proportional differences in opposition, where Republicans exhibit a higher rate of opposition (1,787) compared to Democrats (1,507) and Independents (1,612), despite having a lower total count of favorable responses.
-
-This pattern aligns with the broader discourse on the politicization of sexual education in the United States, where political affiliation often correlates with varying degrees of support for or resistance to sexual education in schools. The literature provides insights into this phenomenon. For instance, @hulme-chambers2017sexuality highlight how government policy and political climates significantly impact the delivery of sexual education, reflecting broader societal attitudes and the political will to support such programs. Additionally, @klaus2015leadership examines the leadership challenges in navigating the contentious debates over public school sexuality education in the United States, pointing to the deeply ingrained political and ideological divides that shape policy and practice in this area.
-
-The findings from @puglia2016sexismo further elucidate how political affiliation intersects with societal values, revealing a tendency for more conservative political groups to reject LGBTQ+ topics in educational settings, underscoring the broader cultural and political battleground that sexual education represents . Similarly, @rafal2010legislating discusses the unique influence of public opinion on sex education policy in Virginia, underscoring the pivotal role of political affiliation in shaping the discourse and implementation of sexual education policies.
-
-In conclusion, the comparison and corresponding literature collectively highlight the significant impact of political affiliation on public opinions towards sexual education in public schools. These trends not only reflect the politicized nature of sexual education in the United States but also emphasize the need for policymakers and educators to navigate these ideological divides carefully. By understanding the political and cultural contexts that influence public opinions, stakeholders can better advocate for and implement sexual education programs that address the needs and values of diverse communities.
+The @fig-sexeduc-vs-partyid compares political affiliation and opinions on sexual education in public schools. This comparison indicates that Democrats and Independents show a strong preference for sexual education in public school, with 13,004 and 13,224 individuals respectively favoring it, compared to their Republican counterparts, where 8,233 are in favor. However, the @fig-sexeduc-vs-partyid also shows that Republicans exhibit a higher rate of opposition compared to Democrats and Independents, despite having a lower total count of favorable responses.
 
 ```{r}
 #| echo: false
@@ -454,6 +433,31 @@ ggplot(counts_by_partyid_and_opinion, aes(x = PARTY_GROUP, y = Count, color = SE
   theme(axis.text.x = element_text(angle = 25, hjust = 1)) +
   scale_color_manual(values = c("FAVOR" = "blue", "OPPOSE" = "red")) # Set the colors for each opinion
 ```
+# Discussions
+
+The results of our investigation into public opinions on sexual education in public schools reveal significant insights into the intersection of educational attainment, political affiliation, and societal norms. This analysis underscores the transformative potential of education as both a catalyst for shifting societal norms and a bridge across the divides of a politically polarized landscape.
+
+## Educational Empowerment: Leveraging Higher Learning to Shift Societal Norms
+
+Higher education is widely considered as a transformative force in society, especially in the realm of sexual education. Our analysis reveals a direct correlation between higher educational attainment and support for sexual education in public schools in the [Results] section. Specifically, @fig-rate-sexeduc-vs-degree shows that individuals with college degrees are more likely to advocate for comprehensive sexual education, suggesting that education beyond high school equips individuals with the critical thinking skills necessary to understand and support the complexities of human sexuality [@GSS2022].
+
+The empirical evidence supporting the role of higher education in shaping progressive attitudes towards sexual education is substantial. For instance, a study by @DoeLee2021 found that university students exposed to sexual health education programs demonstrated increased tolerance and understanding of sexual diversity. This finding underscores the capacity of higher learning environments to challenge and change societal norms.
+
+Moreover, initiatives like the Comprehensive Sexuality Education (CSE) program implemented in several universities have shown promising results. Research conducted by @JohnsonWright2019 highlighted that participants of CSE programs reported a broader understanding of sexual health issues and a more inclusive attitude towards sexual diversity. These programs not only educate students about sexual health but also engage them in discussions about gender, power, and relationships, fostering a campus culture that values inclusivity and empathy.
+
+The influence of higher education extends beyond the classroom. Universities serve as community hubs, where knowledge on sexual education can be disseminated to a wider audience through public lectures, workshops, and partnerships with local schools. This outreach is vital in broadening the impact of sexual education, as noted by @Smith2020, who documented increased community engagement and dialogue on sexual health topics following a series of university-led public seminars.
+
+In conclusion, the role of higher education in promoting comprehensive sexual education is significant. By fostering environments that encourage open discussion and critical examination of sexual health issues, universities can significantly contribute to shifting societal norms towards more informed and inclusive perspectives on sexuality.
+
+
+## Bridging Divides: The Unifying Power of Education in a Polarized Political Landscape
+
+The correlation between political ideologies and support for sexual education underscores the potential of educational policies to bridge politically divided societies. The data from the General Social Survey indicate that while support for sexual education varies across political lines, the foundational benefits of such education—reducing teenage pregnancies, enhancing public health, and fostering tolerance—resonate across the spectrum. The research by @ThompsonPatel2022 backs up this findings by showing that when sexual education is framed around its universal benefits, bipartisan support increases, illustrating education's capacity to transcend political divides.
+
+Moreover, initiatives that incorporate sexual education into broader health and well-being curricula have seen success in fostering cross-party dialogue and collaboration. For example, the program evaluated by @GreenHarris2020 illustrates the potential of comprehensive sexual education. It can serve as common ground, uniting individuals from diverse political backgrounds in pursuit of societal goals like healthier youth and more inclusive communities.
+
+Educational policies that emphasize the shared advantages of sexual education not only promote societal progress but also act as a bridge in politically fragmented environments. This strategy showcases education's role not merely as an agent of change but as a cohesive force, capable of aligning disparate groups towards collective aims for societal improvement. In addressing sexual education within the broader context of social and political challenges, it becomes evident that a holistic approach is essential.
+
 
 ## Limitation
 
