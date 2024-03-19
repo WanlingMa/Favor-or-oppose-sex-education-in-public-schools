@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/WanlingMa/Favor-or-oppose-sex-education-in-public-schools"
 date: today
 date-format: long
-abstract: "This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis reveals that the support for sexual education varies significantly by political ideology, education level, and age, with Democrats, the highly educated, and younger people being the most supportive. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. In conclusion, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare."
+abstract: "This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis shows that differences in support for sexual education are marked by political ideology, education level, and age, with Democrats, the highly educated, and younger people showing the most support. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. Ultimately, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare."
 format: pdf
 toc: true
 number-sections: true
@@ -309,7 +309,7 @@ From @fig-sexeduc-vs-ages, we can see a correlation between the respondent's age
 #| warning: false
 #| message: false
 #| label: fig-sexeduc-vs-ages
-#| fig-cap: "Respondents' Opinions on Sexual Education in Public School versus Respondents' Ages Over 1974 - 2022"
+#| fig-cap: "Trends of Respondents' Opinions on Sexual Education in Public School versus Respondents' Ages Over 1974 - 2022"
 
 data$SEXEDUC <- factor(data$SEXEDUC, levels = c(1, 2), labels = c("FAVOR", "OPPOSE"))
 
@@ -348,7 +348,7 @@ Therefore, we decided to draw another figure that shows the Rate of "Favor" resp
 #| warning: false
 #| message: false
 #| label: fig-sexeduc-vs-degree
-#| fig-cap: "Respondents' Opinions on Sexual Education in Public School versus Respondents' Highest Degree Over 1974 - 2022"
+#| fig-cap: "Trends of Respondents' Opinions on Sexual Education in Public School versus Respondents' Highest Degree Over 1974 - 2022"
 
 # Group data by DEGREE and SEXEDUC, and count the occurrences
 counts_by_degree_and_opinion <- df_filtered %>%
@@ -402,7 +402,7 @@ The @fig-sexeduc-vs-partyid compares political affiliation and opinions on sexua
 #| warning: false
 #| message: false
 #| label: fig-sexeduc-vs-partyid
-#| fig-cap: "Respondents' Opinions on Sexual Education in Public School versus Respondents' Highest Degree Over 1974 - 2022"
+#| fig-cap: "Trends of Respondents' Opinions on Sexual Education in Public School versus Respondents' Highest Degree Over 1974 - 2022"
 
 df_filtered <- df_filtered %>%
   mutate(PARTY_GROUP = case_when( 

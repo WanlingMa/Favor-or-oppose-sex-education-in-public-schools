@@ -2,11 +2,11 @@
 
 ## Overview
 
-This repo provides all scripts, sources, and codes to reproduce the paper **Public Opinions on Sexual Education in Public Schools: An Analysis of Political, Educational,and Generational Influences in the United States from 1972 to 2022∗**. The dataset was retrieved from the General Social Survey (GSS).
+This repo provides all scripts, sources, and codes to reproduce the paper **Public Opinions on Sexual Education in Public Schools: An Analysis of Political, Educational, and Generational Influences in the United States from 1972 to 2022**. The dataset was retrieved from the General Social Survey (GSS).
 
 ## Paper Abstract
 
-This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis reveals widespread support for sexual education, though support varies significantly by political ideology, education level, and age, with Democrats, the highly educated, and younger people being the most supportive. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. Ultimately, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare.
+This paper examines the public's views on sexual education in U.S. public schools, drawing on data from the General Social Survey (GSS). Our analysis shows that differences in support for sexual education are marked by political ideology, education level, and age, with Democrats, the highly educated, and younger people showing the most support. These variations underscore the deep correlation between individual traits and attitudes towards sexual education, reflecting broader societal debates. Ultimately, the study highlights the critical role of inclusive perspectives in developing sexual education policies, suggesting that such education could serve as a unifying tool for public health and societal welfare.
 
 ## File Structure
 
